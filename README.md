@@ -1,29 +1,9 @@
 # vue_im_admin_page
 
-This template should help get you started developing with Vue 3 in Vite.
+## vue3 기본 연습
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. view 페이지 기본 틀
+2. router 관리
+3. 컴포넌트 활용
+4. Json 서버 및 api 호출
+5. pinia 적용
