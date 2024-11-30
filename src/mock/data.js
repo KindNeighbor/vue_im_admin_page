@@ -25,11 +25,16 @@ export const departments = [
 ];
 
 export const users = [
-    { id: 1, name: "홍길동", department: "프론트엔드팀", email: "hong@example.com" },
-    { id: 2, name: "김철수", department: "백엔드팀", email: "kim@example.com" }
+    { id: 1, name: "이OO", department: "프론트엔드팀", email: "hong@example.com", phone: "010-1234-5678" },
+    { id: 2, name: "김OO", department: "백엔드팀", email: "kim@example.com", phone: "010-4321-8765" },
 ];
 
 export const groups = [
     { id: 1, name: "관리자 그룹", description: "시스템 관리자" },
     { id: 2, name: "사용자 그룹", description: "일반 사용자" }
+];
+
+export const roles = [
+    { id: 1, name: "테스트 관리자 역할", description: "관리자 그룹과 연결되는 역할" },
+    { id: 2, name: "테스트 사용자 역할", description: "사용자 그룹과 연결되는 역할" }
 ];

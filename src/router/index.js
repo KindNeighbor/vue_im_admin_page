@@ -4,6 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import UserManagement from '../views/UserManagement.vue'
 import DepartmentManagement from '../views/DepartmentManagement.vue'
 import GroupManagement from '../views/GroupManagement.vue'
+import RoleManagement from "@/views/RoleManagement.vue";
 
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
     {
         path: '/groups',
         component: GroupManagement
+    },
+    {
+        path: '/roles',
+        component: RoleManagement
     }
 ]
 

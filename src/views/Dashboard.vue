@@ -31,16 +31,16 @@
 import { users, departments, groups } from '../mock/data'
 
 export default {
-  setup() {
-    const countDepartments = (deps) => {
+  setup() { // vue3 에서는 setup 함수로 컴포넌트가 생성될 때 실행된다.
+    const countDepartments = (deps) => { // 재귀로 json 데이터를 탐색하면서 전체 부서 수 체크. 이 부분은 데이터에 따라서 달라질 수 있다.
       return deps.reduce((count, dept) => {
         return count + 1 + (dept.children ? countDepartments(dept.children) : 0)
       }, 0)
     }
 
     const recentActivities = [
-      { id: 1, description: '새로운 사용자 등록: 김철수', time: '10분 전' },
-      { id: 2, description: '부서 이동: 홍길동 → 프론트엔드팀', time: '1시간 전' },
+      { id: 1, description: '새로운 사용자 등록: 김OO', time: '10분 전' },
+      { id: 2, description: '부서 이동: 이OO → 프론트엔드팀', time: '1시간 전' },
       { id: 3, description: '그룹 생성: 개발팀', time: '2시간 전' },
     ]
 

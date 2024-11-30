@@ -28,10 +28,15 @@ export default {
           name: dept.name,
           parent: parent ? parent.name : '-'
         }
+
+        // 현재 부서를 결과 배열에 추가
         acc.push(flatDept)
+
+        // 자식 부서가 있다면 재귀적으로 처리
         if (dept.children) {
           acc.push(...flattenDepartments(dept.children, dept))
         }
+
         return acc
       }, [])
     }
