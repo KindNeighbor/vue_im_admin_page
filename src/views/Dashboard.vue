@@ -28,10 +28,17 @@
 </template>
 
 <script>
-import { users, departments, groups } from '../mock/data'
+import { ref, onMounted } from 'vue'
+import { apiService } from '@/api/api.js'
 
 export default {
   setup() { // vue3 에서는 setup 함수로 컴포넌트가 생성될 때 실행된다.
+
+    // ref로 반응형 데이터 선언
+    const userCount = ref(0)
+    const departmentCount = ref(0)
+    const groupCount = ref(0)
+
     const countDepartments = (deps) => { // 재귀로 json 데이터를 탐색하면서 전체 부서 수 체크. 이 부분은 데이터에 따라서 달라질 수 있다.
       return deps.reduce((count, dept) => {
         return count + 1 + (dept.children ? countDepartments(dept.children) : 0)
@@ -44,10 +51,30 @@ export default {
       { id: 3, description: '그룹 생성: 개발팀', time: '2시간 전' },
     ]
 
+    // 데이터 로드 함수
+    const loadData = async () => {
+      try {
+        const [users, departments, groups] = await Promise.all([
+          apiService.getUsers(),
+          apiService.getDepartments(),
+          apiService.getGroups()
+        ])
+
+        userCount.value = users.data.length
+        departmentCount.value = countDepartments(departments.data)
+        groupCount.value = groups.data.length
+      } catch (error) {
+        console.error('데이터 로딩 실패:', error)
+      }
+    }
+
+    // 컴포넌트 마운트 시 데이터 로드
+    onMounted(loadData);
+
     return {
-      userCount: users.length,
-      departmentCount: countDepartments(departments),
-      groupCount: groups.length,
+      userCount,
+      departmentCount,
+      groupCount,
       recentActivities
     }
   }

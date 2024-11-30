@@ -30,11 +30,11 @@ export const users = [
 ];
 
 export const groups = [
-    { id: 1, name: "관리자 그룹", description: "시스템 관리자" },
-    { id: 2, name: "사용자 그룹", description: "일반 사용자" }
+    { id: 1, name: "관리자 그룹", description: "시스템 관리자", 생성일자: "2024-11-30"},
+    { id: 2, name: "사용자 그룹", description: "일반 사용자", 생성일자: "2024-11-30" },
 ];
 
 export const roles = [
-    { id: 1, name: "테스트 관리자 역할", description: "관리자 그룹과 연결되는 역할" },
-    { id: 2, name: "테스트 사용자 역할", description: "사용자 그룹과 연결되는 역할" }
+    { id: 1, name: "테스트 관리자 역할", system : "TEST 그룹웨어", 생성일자: "2024-11-30"},
+    { id: 2, name: "테스트 사용자 역할", system: "TEST ERP", 생성일자: "2024-11-30"}
 ];

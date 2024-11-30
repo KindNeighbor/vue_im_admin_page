@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { departments } from '@/mock/data.js'
+import { ref, onMounted } from 'vue'
+import { apiService } from '@/api/api.js'
 import TreeNode from './TreeNode.vue'
 
 export default {
@@ -21,6 +22,22 @@ export default {
     TreeNode
   },
   setup() {
+    const departments = ref([]);
+
+    // 데이터 로드 함수
+    const loadData = async () => {
+      try {
+        const [departmentsResponse] = await Promise.all([
+          apiService.getDepartments()
+        ])
+        departments.value = departmentsResponse.data;
+      } catch (error) {
+        console.error('데이터 로딩 실패:', error)
+      }
+    }
+
+    onMounted(loadData);
+
     return {
       departments
     }

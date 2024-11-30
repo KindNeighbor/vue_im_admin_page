@@ -12,7 +12,8 @@
 <script>
 import DepartmentTree from '../components/layout/DepartmentTree.vue'
 import DataTable from '../components/common/DataTable.vue'
-import { departments } from '../mock/data'
+import {ref, onMounted, computed} from 'vue'
+import { apiService } from '@/api/api.js'
 
 export default {
   components: {
@@ -20,6 +21,9 @@ export default {
     DataTable
   },
   setup() {
+
+    const departments = ref([]);
+
     // 트리 구조를 평면화하여 테이블에 표시
     const flattenDepartments = (deps, parent = null) => {
       return deps.reduce((acc, dept) => {
@@ -41,7 +45,23 @@ export default {
       }, [])
     }
 
-    const departmentList = flattenDepartments(departments)
+    const loadData = async () => {
+      try {
+        const [departmentsResponse] = await Promise.all([
+            apiService.getDepartments(),
+        ])
+        departments.value = departmentsResponse.data;
+      } catch (error) {
+        console.error('데이터 로딩 실패:', error)
+      }
+    }
+
+    onMounted(loadData);
+
+    const departmentList = computed(() => {
+      if (!departments.value || departments.value.length === 0) return []
+      return flattenDepartments(departments.value)
+    })
 
     return {
       departmentList

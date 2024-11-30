@@ -7,13 +7,31 @@
 
 <script>
 import DataTable from "@/components/common/DataTable.vue";
-import { roles } from '../mock/data'
+import {ref, onMounted, computed} from 'vue'
+import { apiService } from '@/api/api.js'
 
 export default {
   components: {
     DataTable,
   },
   setup() {
+
+    const roles = ref([]);
+
+    // 데이터 로드 함수
+    const loadData = async () => {
+      try {
+        const [rolesResponse] = await Promise.all([
+          apiService.getRoles()
+        ])
+        roles.value = rolesResponse.data;
+      } catch (error) {
+        console.error('데이터 로딩 실패:', error)
+      }
+    }
+
+    onMounted(loadData);
+
     return {
       roles
     }
